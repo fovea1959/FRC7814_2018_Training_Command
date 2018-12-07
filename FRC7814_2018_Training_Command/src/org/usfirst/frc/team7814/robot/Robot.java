@@ -7,12 +7,15 @@
 
 package org.usfirst.frc.team7814.robot;
 
+import org.usfirst.frc.team7814.robot.cg.SillyCommandGroup;
+
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -112,6 +115,8 @@ public class Robot extends TimedRobot {
 		
 		JoystickButton pickupButton = new JoystickButton(driverJoystick, 1);
 		pickupButton.whileHeld(new PickupRunCommand());
+		
+		SmartDashboard.putData(new SillyCommandGroup());
 	}
 
 	@Override
@@ -189,4 +194,26 @@ public class Robot extends TimedRobot {
   	  StackTraceElement st1 = stackTraceElement[1];
   	  System.out.println("command " + st1.getClassName() + " " + st1.getMethodName());
     }
+    
+	public static void commandMessage(String label) {
+		Throwable t = new Throwable();
+		StackTraceElement[] stackTraceElement = t.getStackTrace();
+		StackTraceElement st1 = stackTraceElement[1];
+		System.out.println("command " + st1.getClassName() + " " + st1.getMethodName() + ": " + label);
+	}
+	
+	static double t0 = 0;
+	public static void resetT0() {
+		t0 = Timer.getFPGATimestamp();
+	}
+	
+	public static void timedCommandMessage(String label) {
+		Throwable t = new Throwable();
+		StackTraceElement[] stackTraceElement = t.getStackTrace();
+		StackTraceElement st1 = stackTraceElement[1];
+		double elapsed = Timer.getFPGATimestamp() - t0;
+		System.out.println(String.format("%.2f",elapsed) + " command " + st1.getClassName() + " " + st1.getMethodName() + ": " + label);
+	}
+	
+
 }
