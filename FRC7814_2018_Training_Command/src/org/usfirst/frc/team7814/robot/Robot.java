@@ -199,7 +199,7 @@ public class Robot extends TimedRobot {
 		Throwable t = new Throwable();
 		StackTraceElement[] stackTraceElement = t.getStackTrace();
 		StackTraceElement st1 = stackTraceElement[1];
-		System.out.println("command " + st1.getClassName() + " " + st1.getMethodName() + ": " + label);
+		System.out.println("command " + st1.getClass().getSimpleName() + " " + st1.getMethodName() + ": " + label);
 	}
 	
 	static double t0 = 0;
@@ -212,7 +212,7 @@ public class Robot extends TimedRobot {
 		StackTraceElement[] stackTraceElement = t.getStackTrace();
 		StackTraceElement st1 = stackTraceElement[1];
 		double elapsed = Timer.getFPGATimestamp() - t0;
-		System.out.println(String.format("%.2f",elapsed) + " command " + st1.getClassName() + " " + st1.getMethodName() + ": " + label);
+		System.out.println(String.format("%.2f",elapsed) + " command " + st1.getClass().getSimpleName() + " " + st1.getMethodName() + ": " + label);
 	}
 	
 
