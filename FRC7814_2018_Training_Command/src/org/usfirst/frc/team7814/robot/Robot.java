@@ -192,7 +192,7 @@ public class Robot extends TimedRobot {
   	  Throwable t = new Throwable();
   	  StackTraceElement[] stackTraceElement = t.getStackTrace();
   	  StackTraceElement st1 = stackTraceElement[1];
-  	  System.out.println("command " + st1.getClassName() + " " + st1.getMethodName());
+  	  System.out.println("command " + st1.getClass().getSimpleName() + " " + st1.getMethodName());
     }
     
 	public static void commandMessage(String label) {
