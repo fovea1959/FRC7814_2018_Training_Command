@@ -11,8 +11,8 @@ public class ShooterWheelSubsystem extends Subsystem {
     // here. Call these from Commands.
 	
 	public void turnShootersOn(double power) {
-		Robot.leftShooterController.set(power);
-		Robot.rightShooterController.set(power);
+		Robot.leftShooterController.set(power * 1.0);
+		Robot.rightShooterController.set(power * -0.75);
 	}
 
 	public void turnShootersOff() {

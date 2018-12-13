@@ -109,6 +109,8 @@ public class Robot extends TimedRobot {
 		shooterSlowButton.toggleWhenPressed(new ShooterRunSlowCommand());
 		JoystickButton shooterFastButton = new JoystickButton(driverJoystick, 4);
 		shooterFastButton.toggleWhenPressed(new ShooterRunFastCommand());
+		JoystickButton shooterAnalogButton = new JoystickButton(driverJoystick, 2);
+		shooterAnalogButton.toggleWhenPressed(new ShooterRunBasedOnAnalogInputCommand());
 		
 		JoystickButton pickupButton = new JoystickButton(driverJoystick, 1);
 		pickupButton.whileHeld(new PickupRunCommand());
